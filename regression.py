@@ -86,15 +86,15 @@ p = np.poly1d(z)
 print("Equation: y = \n %s" %p)
 yr = p(x)
 err = sqrt(sum((yr-y)**2)/len(y))
-print("Standard Deviation = %f" %err)
+print("Standard Deviation = %.5g" %err)
 print("Approximate roots: %s" %p.r)
 
 #graphing
 xnew = np.linspace(min(x),max(x),300)
-power_smooth = spline(x,yr,xnew)
+ynew = p(xnew)
 title(yname + " - " + xname)
 plot(x,y,'g.')
-plot(xnew,power_smooth,'r-')
+plot(xnew,ynew,'r-')
 if xunit == None:
     xlabel(xname)
 else:
@@ -103,7 +103,7 @@ if yunit == None:
     ylabel(yname)
 else:
     ylabel(yname + " (" + yunit + ")")
-ylim([min([min(y),min(power_smooth)])-((max([max(y),max(power_smooth)])- min([min(y),min(power_smooth)]))/10),max([max(y),max(power_smooth)])+((max([max(y),max(power_smooth)])- min([min(y),min(power_smooth)]))/10)])
+ylim([min([min(y),min(ynew)])-((max([max(y),max(ynew)])- min([min(y),min(ynew)]))/10),max([max(y),max(ynew)])+((max([max(y),max(ynew)])- min([min(y),min(ynew)]))/10)])
 xlim([min(x)-((max(x)-min(x))/10),max(x)+((max(x)-min(x))/10)])
 show()
 
